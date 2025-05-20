@@ -1,0 +1,311 @@
+% ------------------------------------------------------------
+% Virlupus LaTeX Template - v1.0 (2025)
+% A PDFLaTeX template for popular science, literature, and educational texts.
+%
+% This document is free software; you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation; either version 2 of the License, or
+% (at your option) any later version.
+%
+% Designed for elegant typesetting of A5 books with professional typography.
+% Copyleft - Virlupus Software - 2025
+% ------------------------------------------------------------
+
+% Base packages and document settings
+\documentclass[a5paper,12pt]{book}							% A5 paper and 12pt font improves readability
+
+% We can change the margins, but it is not neccessary
+\usepackage[a5paper,outer=2cm,inner=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+
+% \usepackage{romande}    									% For literary texts
+% \usepackage{libertinus} 									% Universal: serif, math-friendly, elegant
+\usepackage{mlmodern}     									% For scientific texts (stronger appearence)
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}									% Select your language. I'm from the Czech Republic, sorry :-)
+\usepackage[all]{nowidow}									% Typographic adjustment: widows and orphans don't look aesthetically pleasing
+\usepackage{multicol}										% Sometimes we need multi-column formatting
+
+\usepackage{longtable}										% For tables that span multiple pages
+\usepackage{array}											% This package removes some limitations of the tabular environment
+
+% Sometimes it's necessary to use math, so we prepare the environment here
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% An alphabetical index is the foundation of every scientific book
+\usepackage{imakeidx}
+\makeindex
+
+% ------------------------------------------------------------
+% Graphics for headers and footers
+\usepackage{quotchap}										% Chapter quotation
+\usepackage{fancyhdr}
+\usepackage{pgfornament}
+\pagestyle{fancy}
+
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}
+}
+\renewcommand{\sectionmark}[1]{\markright{#1}
+}
+
+\renewcommand\headrule{
+	\hrulefill
+	\color{black}
+	\pgfornament[anchor=west, width=2.0cm]{87}
+	\hrulefill
+}
+
+\fancyhf{}
+\fancyhead[LE,RO]{\thesection}
+\fancyhead[RE,LO]{\thepage}
+\fancyhead[RO]{\textsl{\leftmark}}
+\fancyhead[LE]{\textsl{\rightmark}}
+\setlength{\headheight}{25.504pt}
+
+\fancypagestyle{plain}
+
+% ------------------------------------------------------------
+% Hypertext links – table of contents, index, web links, etc.
+\usepackage{graphicx}										% We need images
+\usepackage[svgnames]{xcolor}								% Named colors
+
+\usepackage{hyperref}
+\usepackage[all]{hypcap}
+\hypersetup{
+	pdfborder=0 0 0,
+	linkcolor=DarkSlateGrey,
+	urlcolor=DarkSlateGrey,
+	citecolor=DarkSlateGrey,
+	colorlinks=true
+}
+
+% ------------------------------------------------------------
+% Framed text for important math or other content
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+\tcbuselibrary{theorems}
+\tcbuselibrary{skins}
+\tcbset{
+	enhanced,
+	parbox=false,
+	left=0.5mm,
+	right=0.5mm,
+	boxrule=0.5mm,
+	breakable,
+	drop large lifted shadow,
+	fonttitle=\bfseries\slshape,
+	separator sign={\ $\bullet$}
+}
+
+% Framed environments for important content – you can also add icons
+\newenvironment{grammar}[1]
+{\begin{tcolorbox}[colframe=CadetBlue, colback=CadetBlue!5, title=Gramatika - #1]}
+	{\end{tcolorbox}}
+
+\newenvironment{remember}
+{\begin{tcolorbox}[colframe=red, colback=AliceBlue]}
+	{\end{tcolorbox}}
+
+\newenvironment{note}
+{\begin{tcolorbox}[colframe=CadetBlue, colback=AliceBlue]}
+	{\end{tcolorbox}}
+
+\newenvironment{important}
+{\begin{tcolorbox}[colframe=Orange, colback=AliceBlue]}
+	{\end{tcolorbox}}
+
+\newtcbtheorem[number within=section]{theorem}{Theorem}%
+{colback=Gray!5,colframe=CadetBlue,fonttitle=\bfseries\slshape}{th}
+
+\newtcbtheorem[number within=section]{proof}{Proof}%
+{colback=Gray!5,colframe=CadetBlue,fonttitle=\bfseries\slshape}{th}
+
+\newtcbtheorem[number within=section]{define}{Definition}%
+{colback=Gray!5,colframe=CadetBlue,fonttitle=\bfseries\slshape}{th}
+
+% ------------------------------------------------------------
+% Additional math operators for localization
+\DeclareMathOperator{\tg}{tg}                       		% Tangent (in Central Europe)
+\DeclareMathOperator{\arctg}{arctg}                 		% Inverse tangent
+\DeclareMathOperator{\e}{e}                         		% Exponeniial function
+
+\newcommand{\ux}[1]{\ensuremath{^{\mathrm{#1}}}}    		% Superscript with upright font
+\newcommand{\lx}[1]{\ensuremath{_{\mathrm{#1}}}}    		% Subscript with upright font
+\newcommand{\DD}[1]{\Delta #1}                      		% Difference (not derivative)
+\newcommand{\DV}[2]{\frac{\Delta #1}{\Delta #2}}    		% Difference quotient
+
+% ------------------------------------------------------------
+% Packages for chemistry and physics units
+\usepackage{chemexec}
+\usepackage{physics}
+\usepackage{physunits}
+
+% ------------------------------------------------------------
+% Graphics settings for your drawings
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usetikzlibrary{arrows}
+
+% ------------------------------------------------------------
+% Base path for your images
+\graphicspath{{assets/}}
+
+% ------------------------------------------------------------
+% Here is the realy text of your book
+\begin{document}
+	
+	% --------------------------------------------------------
+	% Title page under your control
+	
+	\begin{titlepage}
+		\begin{center}
+			\vspace*{10mm}
+			
+			% Book title
+			{\Huge The sample of a book}\\
+			\vspace{5mm}
+			
+			% Try add any graphics or informations about
+			\vfill
+			
+			% Author
+			{\large \textbf{PhDr. Mgr. Virlupus Volchv}}\\
+			\vfill
+			
+			% Some logo of an institute
+			\includegraphics[width=0.1\textwidth]{"logo.png"}
+			
+			% Organization and data
+			{\small Schola Versipellem\\}
+			{\footnotesize Jihlava\\}
+			{\scriptsize \today}\\
+			{\scriptsize version 1.0}
+		\end{center}
+	\end{titlepage}
+	
+	% Contents list
+	\tableofcontents
+	
+	% --------------------------------------------------------
+	% The main document begins here
+	
+	% Quote for this chapter - width is 75% of content width
+	\begin{savequote}[.75 \textwidth]
+		Two things are infinite: the universe and the human stupidity.
+		\qauthor{Albert Einstein}
+	\end{savequote}
+	
+	% Chapter title
+	\chapter{Shall we try physics?}
+	
+	What is physics? We can say that it is an attempt to understand the events that we see around us in the nature.
+	
+	\dots
+	
+	Let's look at force, it's just a mathematical construct, but it can facilitate a lot of calculations that are useful in practical applications. Whether it's space flights or children playing on a swing.
+	
+	\section{Newton's laws}
+	
+	Issac Newton left us several interesting insights that have been denied for centuries, mainly by church organizations.
+	
+	\index{Physics!Laws!Newton inertia}
+	\index{Physics!Laws!Newton first law}
+	\index{Newton inertia}
+	\index{Newton!inertia}
+	\index{Law of inertia}
+	\index{Newton!first law}
+	\begin{define}{Newton first law}{}
+		An object at rest remains at rest, or if in motion, remains in motion at a constant velocity unless acted on by a net external force.
+		
+		Corpus omne perseverare in statu suo quiescendi vel movendi uniformiter in directum, nisi quatenus a~viribus impressis cogitur statum illum mutare.
+	\end{define}
+	
+	\dots
+	
+	\index{Physics!Newton gravity}
+	\index{Newton gravity}
+	\index{Newton!gravity}
+	\index{gravity}
+	\begin{define}{Newton's gravity}{}
+		Any particle of matter in the universe attracts any other with a force varying directly as the product of the masses and inversely as the square of the distance between them.
+	\end{define}
+	
+	The equation for universal gravitation thus takes the form:
+	
+	\begin{remember}
+		\[F = G\frac{m_1\cdot m_2}{r^2}\]
+	\end{remember}
+	
+	where $F$ is the gravitational force acting between two objects, $m_1$ and $m_2$ are the masses of the objects, $r$ is the distance between the centers of their masses, and $G$ is the gravitational constant. 
+	
+	Over time, it was necessary to replace this theory with a more accurate one. Although Newton's equation is still valid, it is only a certain limit. The reason is that it does not respect the role of time and its results are sometimes inaccurate.
+	
+	\index{Physics!Einstein relativity}
+	\index{Einstein!relativity}
+	\index{general relativity}
+	\index{relativity}
+	\index{gravity}
+	That's why we use Einstein's special and general relativity today.
+	
+	\begin{important}
+		\[R_{\mu\nu} - \frac{1}{2}R\,g_{\mu\nu} + \Lambda\, g_{\mu\nu} = \frac{8\pi G}{c^4}\,T_{\mu\nu}\]
+	\end{important}
+	
+	\dots
+	
+	\chapter{Let’s Try Mathematics}
+	
+	Geometry gives us powerful tools to describe space. One of the most famous results in geometry is the Pythagorean theorem.
+	
+	\index{Math!pythagorean theorem}
+	\index{pythagorean theorem}
+	\index{Theorems!pythagorean}
+	\index{triangle}
+	\begin{define}{Pythagorean Theorem}{}
+		In a right-angled triangle, the square of the hypotenuse is equal to the sum of the squares of the other two sides.
+		\[
+		c^2 = a^2 + b^2
+		\]
+	\end{define}
+	
+	Let’s now look at a simple algebraic proof of this statement.
+	
+	\begin{proof}{Algebraic proof using square area}{}
+		Consider a square of side length $(a + b)$, divided as shown below into four right-angled triangles and a small inner square.
+		
+		The area of the large square is:
+		\[
+		(a + b)^2
+		\]
+		
+		The area can also be expressed as the sum of the areas of the four right-angled triangles and the small inner square:
+		\[
+		4 \cdot \left(\frac{1}{2}ab\right) + c^2
+		\]
+		
+		Equating both expressions:
+		\begin{align*}
+			(a + b)^2 = 4 \cdot \left(\frac{1}{2}ab\right) + c^2\\
+			a^2 + 2ab + b^2 = 2ab + c^2
+		\end{align*}
+		
+		Subtract $2ab$ from both sides:
+		\[
+		a^2 + b^2 = c^2
+		\]
+		
+		Which is exactly the Pythagorean theorem.
+	\end{proof}
+	
+	\begin{remember}
+		This proof shows that the theorem is not just a geometric rule, but also an algebraic identity based on area manipulation.
+	\end{remember}
+	
+	{\small \printindex}
+	
+\end{document}
+
+
