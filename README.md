@@ -1,4 +1,4 @@
-# README – Virlupus LaTeX Template v1.0
+# Virlupus Book LaTeX Template v1.0
 
 ## ✨ Overview
 
